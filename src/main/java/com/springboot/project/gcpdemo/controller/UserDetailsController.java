@@ -20,6 +20,8 @@ public class UserDetailsController {
             UserDetails user2 = new UserDetails("Nivedha", "Velachery", "Female");
             list.add(user1);
             list.add(user2);
+            list.add(new UserDetails("Chethu", "Velachery", "Female"));
+            list.add(new UserDetails("Mithu", "Velachery", "Female"));
 
             return new ResponseEntity<>(list, HttpStatus.OK);
         } catch (Exception e) {
