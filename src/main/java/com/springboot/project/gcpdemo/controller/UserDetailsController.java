@@ -1,6 +1,7 @@
 package com.springboot.project.gcpdemo.controller;
 
 import com.springboot.project.gcpdemo.model.UserDetails;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,12 @@ import java.util.List;
 
 @RestController
 public class UserDetailsController {
+
+    @Value("${elderDaughter}")
+    private String elder;
+
+    @Value("${yougerDaughter}")
+    private String younger;
     @GetMapping("/userList")
     public ResponseEntity<List<UserDetails>> getAllUserDetails(@RequestParam(required = false) String userName) {
         try {
@@ -20,8 +27,8 @@ public class UserDetailsController {
             UserDetails user2 = new UserDetails("Nivedha", "Velachery", "Female");
             list.add(user1);
             list.add(user2);
-            list.add(new UserDetails("Chethu", "Velachery", "Female"));
-            list.add(new UserDetails("Mithu", "Velachery", "Female"));
+            list.add(new UserDetails(elder, "Velachery", "Female"));
+            list.add(new UserDetails(younger, "Velachery", "Female"));
 
             return new ResponseEntity<>(list, HttpStatus.OK);
         } catch (Exception e) {
