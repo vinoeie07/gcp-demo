@@ -17,8 +17,8 @@ public class UserDetailsController {
     @Value("${elderDaughter}")
     private String elder;
 
-    @Value("${yougerDaughter}")
-    private String younger;
+    /*@Value("${yougerDaughter}")
+    private String younger;*/
     @GetMapping("/userList")
     public ResponseEntity<List<UserDetails>> getAllUserDetails(@RequestParam(required = false) String userName) {
         try {
@@ -28,7 +28,7 @@ public class UserDetailsController {
             list.add(user1);
             list.add(user2);
             list.add(new UserDetails(elder, "Velachery", "Female"));
-            list.add(new UserDetails(younger, "Velachery", "Female"));
+            list.add(new UserDetails("Meghnaa Shree V", "Velachery", "Female"));
 
             return new ResponseEntity<>(list, HttpStatus.OK);
         } catch (Exception e) {
