@@ -1,9 +1,10 @@
 FROM openjdk:17-jdk-alpine
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
+MAINTAINER gcp.springboot
+RUN mkdir -p /opt/springboot-gcp-0.0.1/lib
+# Setting application source code working directory
+WORKDIR /opt/springboot-gcp-0.0.1/
+COPY target/springboot-gcp-0.0.1-SNAPSHOT.jar /opt/springboot-gcp-0.0.1/lib/springboot-gcp-0.0.1-SNAPSHOT.jar
 
-EXPOSE 8080
-
-CMD java \
-  -XX:MaxRAMPercentage=60 \
-  -jar app.jar
+RUN sh -c 'touch springboot-gcp-0.0.1-SNAPSHOT.jar'
+ENTRYPOINT ["java"]
+CMD ["-jar", "/opt/springboot-gcp-0.0.1-SNAPSHOT/lib/springboot-gcp-0.0.1-SNAPSHOT.jar"]
