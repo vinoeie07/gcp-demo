@@ -14,11 +14,11 @@ import java.util.List;
 @RestController
 public class UserDetailsController {
 
-    @Value("${elderDaughter}")
+    @Value("${elderDaughter:V Chetnaa Shree}")
     private String elder;
 
-    /*@Value("${yougerDaughter}")
-    private String younger;*/
+    @Value("${yougerDaughter:V Meghnaa Shree}")
+    private String younger;
     @GetMapping("/userList")
     public ResponseEntity<List<UserDetails>> getAllUserDetails(@RequestParam(required = false) String userName) {
         try {
@@ -28,7 +28,7 @@ public class UserDetailsController {
             list.add(user1);
             list.add(user2);
             list.add(new UserDetails(elder, "Velachery", "Female"));
-            list.add(new UserDetails("Meghnaa Shree V", "Velachery", "Female"));
+            list.add(new UserDetails(younger, "Velachery", "Female"));
 
             return new ResponseEntity<>(list, HttpStatus.OK);
         } catch (Exception e) {
