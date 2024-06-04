@@ -1,6 +1,7 @@
 package com.springboot.project.gcpdemo.controller;
 
 import com.springboot.project.gcpdemo.model.UserDetails;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@Slf4j
 public class UserDetailsController {
 
     @Value("${elderDaughter:V Chetnaa Shree}")
@@ -22,7 +24,7 @@ public class UserDetailsController {
     @GetMapping("/userList")
     public ResponseEntity<List<UserDetails>> getAllUserDetails(@RequestParam(required = false) String userName) {
         try {
-            List<UserDetails> list = new ArrayList();
+            List<UserDetails> list = new ArrayList<>();
             UserDetails user1 = new UserDetails("Vinodkumar", "Velachery", "Male");
             UserDetails user2 = new UserDetails("Nivedha", "Velachery", "Female");
             list.add(user1);
