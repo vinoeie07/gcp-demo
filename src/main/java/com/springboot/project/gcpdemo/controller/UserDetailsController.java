@@ -3,6 +3,7 @@ package com.springboot.project.gcpdemo.controller;
 import com.springboot.project.gcpdemo.model.UserDetails;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
+@PropertySource(value = {"${APP_PROP_LOCATION}/application.properties"}, ignoreResourceNotFound = true)
 public class UserDetailsController {
 
     @Value("${elderDaughter:V Chetnaa Shree}")
@@ -21,6 +23,7 @@ public class UserDetailsController {
 
     @Value("${yougerDaughter:V Meghnaa Shree}")
     private String younger;
+
     @GetMapping("/userList")
     public ResponseEntity<List<UserDetails>> getAllUserDetails(@RequestParam(required = false) String userName) {
         try {
